@@ -29,14 +29,9 @@ try
 	}
 	else
 	{
-	//int row=st.executeUpdate("INSERT INTO UserAccount(name,email,password,creditCardNumber,dob)VALUES('"+fullName+"','"+email+"','"+password+"','"+creditCardNumber+"','"+dob+"')");
-	//int row=st.executeUpdate("INSERT INTO UserAccount "+"VALUES('fullName','email','password',creditCardNumber,dob)");
-//	PreparedStatement statement = connection.prepareStatement("INSERT INTO history (to, subject, body) VALUES (?, ?, ?)");
-    String insert = "INSERT INTO UserAccount(name,email,password,creditCardNumber,dob)"
-				+ "VALUES (?, ?, ?,?,?)";
+		String insert = "INSERT INTO UserAccount(name,email,password,creditCardNumber,dob)" + "VALUES (?, ?, ?,?,?)";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
-
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		ps.setString(1, fullName);
 		ps.setString(2, email);
@@ -50,21 +45,14 @@ try
 		{
 			out.println("query is successessfully added");
 		}
-		//con.close();
-       out.println("Account created successfully");
-	} 
+		
+         out.println("Account created successfully");
+	 } 
  }
 catch (Exception e){
 	out.println(e);
 	}
 
-
-
 %>
-
-
-
-
-
 </body>
 </html>
