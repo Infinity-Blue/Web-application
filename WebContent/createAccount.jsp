@@ -14,10 +14,10 @@
        <!--Login Name is email address-->
        <h1 style="font-size:30px">Create Account</h1>
        Full name <br/> <input type="text" name="Full name"/> <br/>
-       Login Name <br/><input type="text" name="Login Name"/> <br/>
-       Password<br/> <input type="password" name="password"/> <br/>
+       Email address <br/><input type="text" name="Login Name"/><br/>
+       Password <br/><input type="password" name="password"/> <br/>
        creditCardNumber<br/> <input type="text" name="Creditcard Number"/> <br/>
-       Date of birth <br/><input type="text" name="dateofbirth"/> <br/>
+       Date of birth(YYYYMMDD) <br/><input type="text" name="dateofbirth"/> <br/>
        <input type="submit" value="Submit"/>
        </form>
 </body>
