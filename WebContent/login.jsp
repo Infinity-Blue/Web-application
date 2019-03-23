@@ -11,7 +11,7 @@
 </head>
 <body>
        <form action="checkLoginDetails.jsp" method="POST">
-       Username <br/><input type="text" name="username"/> <br/>
+       Email address <br/><input type="text" name="username"/> <br/>
        Password <br/> <input type="password" name="password"/> <br/>
        <input type="submit" value="Submit"/>
        <a href='createAccount.jsp'>Create Account</a>
