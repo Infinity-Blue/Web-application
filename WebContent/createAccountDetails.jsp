@@ -14,8 +14,9 @@
 String fullName=request.getParameter("Full name");
 String email=request.getParameter("Login Name");
 String password=request.getParameter("password");
-int creditCardNumber=Integer.parseInt(request.getParameter("Creditcard Number"));
-int dob=Integer.parseInt(request.getParameter("dateofbirth"));
+String creditCardNumber=request.getParameter("Creditcard Number");
+String datebirth=request.getParameter("dateofbirth");
+
 
 try
 {
@@ -25,34 +26,49 @@ try
 	ResultSet rs=st.executeQuery("select * from UserAccount where email='"+email+"'");
 	if (rs.next())
 	{ 
-		out.println("email already exists. Please use another email");
-	}
-	else
+		out.println("email address already exists. Use different email address");%>
+		<br/><a href="login.jsp">Login</a>
+<%  }
+	else if(email.indexOf('@')==-1 || email.indexOf('.')==-1)
 	{
-		String insert = "INSERT INTO UserAccount(name,email,password,creditCardNumber,dob)" + "VALUES (?, ?, ?,?,?)";
+		out.println("invalid email address");
+%>		<br/><a href="login.jsp">Login</a>
+<% 	}
+	
+	else if(fullName==""||email==""||password==""||creditCardNumber==""||datebirth=="")
+	{
+	    out.println("Please fill out all fields"); %>
+	    <br/><a href="login.jsp">Login</a>
+<% 	}
+ 	else
+	{ 
+	//int row=st.executeUpdate("INSERT INTO UserAccount(name,email,password,creditCardNumber,dob)VALUES('"+fullName+"','"+email+"','"+password+"','"+creditCardNumber+"','"+dob+"')");
+	//int row=st.executeUpdate("INSERT INTO UserAccount "+"VALUES('fullName','email','password',creditCardNumber,dob)");
+    String insert = "INSERT INTO UserAccount(name,email,password,creditCardNumber,dob)"
+				+ "VALUES (?, ?, ?,?,?)";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
+
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		ps.setString(1, fullName);
 		ps.setString(2, email);
 		ps.setString(3, password);
-		ps.setInt(4, creditCardNumber);
-		ps.setInt(5, dob);
+		ps.setString(4, creditCardNumber);
+		ps.setString(5, datebirth);
 		//Run the query against the DB
 		ps.executeUpdate();
-		rs=st.executeQuery("select * from UserAccount where email='"+email+"'");
+		/* rs=st.executeQuery("select * from UserAccount where email='"+email+"'");
 		if (rs.next())
 		{
 			out.println("query is successessfully added");
-		}
-		
-         out.println("Account created successfully");
-	 } 
+		} */
+		//con.close();
+       out.println("Account created successfully");
+	} 
  }
 catch (Exception e){
 	out.println(e);
 	}
-
 %>
 </body>
 </html>
