@@ -1,4 +1,5 @@
 package cs336.pkg;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,7 +29,8 @@ public Connection getConnection()
 	}
 	try {
 		//Create a connection to your DB
-		connection = DriverManager.getConnection("jdbc:mysql://cs336db.cdvbrtprel1b.us-east-2.rds.amazonaws.com:3306/CS336Schema","CS336","CssC336$$");
+		connection = DriverManager.getConnection("jdbc:mysql://buyme.cdvbrtprel1b.us-east-2.rds.amazonaws.com:3306/BuyMe", "group9", "group9rox");
+		//connection = DriverManager.getConnection("jdbc:mysql://cs336db.cdvbrtprel1b.us-east-2.rds.amazonaws.com:3306/CS336Schema","CS336","CssC336$$");
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
