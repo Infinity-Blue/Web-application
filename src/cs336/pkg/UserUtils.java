@@ -41,11 +41,11 @@ public class UserUtils {
 		return emailList;
 	}
 	
-	
+	/*
 	public static void main(String [] args) throws SQLException {
 		System.out.println(getEmailIDs());
 		System.out.println(doesUserExist("rg743@gmail.com"));
-	}
+	}*/
 	
 }
 
