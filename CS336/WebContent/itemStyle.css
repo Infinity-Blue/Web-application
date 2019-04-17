@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.item{
+ margin: 10px 280px;
+}
+
+.item a{
+color:black;
+	
+}
+
+.category{
+	float:left;
+}
