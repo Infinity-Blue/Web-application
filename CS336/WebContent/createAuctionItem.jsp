@@ -10,9 +10,18 @@
 
   <form action="storeItem.jsp" method="POST">
        Title <br/><input type="text" name="title"/> <br/>
+       EndDate (MM-DD-YYYY) <br/><input type="text" name="enddate"/> <br/>
        Initial Price <br/> <input type="text" name="initialprice"/> <br/>
        Minimum Price <br/><input type="text" name="minprice"/> <br/>
-       Category <br/> <input type="text" name="category"/> <br/>
+
+       Category:
+       
+     	<input type="radio" name="category" value = "cat"> Cat
+		<input type="radio" name="category" value = "dog"> Dog
+		<input type="radio" name="category" value = "rabbit"> Rabbit
+		
+		<p></p>
+		
        Color <br/><input type="text" name="color"/> <br/>
        Name <br/><input type="text" name="name"/> <br/>
        Age <br/><input type="text" name="age"/> <br/>

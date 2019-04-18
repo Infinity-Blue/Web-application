@@ -5,26 +5,37 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class ItemUtils {
 	
 
-	public static void insertItem(String title, String initialPrice, String minPrice, String category, String color, String age, String name, String breed) throws SQLException {
+	public static void insertItem(String title, String enddate, String initialPrice, String minPrice, String category, String color, String age, String name, String breed) throws SQLException, ParseException {
 		Application db = new Application();
 		Connection con = db.getConnection();
 
 		 
 
-		String insert = "INSERT INTO Item (title,initial_Price, min_price, Category)"
-				+ "VALUES (?, ?, ?, ?)";
+		String insert = "INSERT INTO Item (title, end_date, initial_Price, min_price, Category)"
+				+ "VALUES (?, ?, ?, ?, ?)";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
+		
+		java.util.Date date = sdf1.parse(enddate);
+		
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		ps.setString(1, title);
-		ps.setDouble(2, Double.parseDouble(initialPrice));
-		ps.setDouble(3, Double.parseDouble(minPrice));
-		ps.setString(4, category);
+		ps.setDate(2, sqlDate);
+		ps.setDouble(3, Double.parseDouble(initialPrice));
+		ps.setDouble(4, Double.parseDouble(minPrice));
+		ps.setString(5, category);
 		//Run the query against the DB
 		ps.execute();
 		
@@ -82,9 +93,9 @@ public class ItemUtils {
 		
 	}
 	
-	/*
-	public static void main(String [] args) throws SQLException {
-		insertItem("guby","999.99", "500.00", "Dog", "White", "5", "tucker", "poodle");
+	
+	/*public static void main(String [] args) throws SQLException, ParseException {
+		insertItem("guby","04-04-1999","999.99", "500.00", "Dog", "White", "5", "tucker", "poodle");
 	}
 */
 	

@@ -14,6 +14,7 @@
 <%
 
 String title = request.getParameter("title"); 
+String enddate = request.getParameter("enddate"); 
 String initialPrice = request.getParameter("initialprice");
 String minprice = request.getParameter("minprice");
 String category = request.getParameter("category");
@@ -22,7 +23,7 @@ String name = request.getParameter("name");
 String age = request.getParameter("age");
 String breed = request.getParameter("breed");
 
-ItemUtils.insertItem(title, initialPrice, minprice, category, color, age, name, breed);
+ItemUtils.insertItem(title, enddate, initialPrice, minprice, category, color, age, name, breed);
 
 
 out.println("Item created successfully");
