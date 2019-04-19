@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="cs336.pkg.*"%>
-<!--Import some libraries that have classes that we need -->
+    pageEncoding="UTF-8" import="cs336.pkg.*"%>
+  <!--Import some libraries that have classes that we need -->
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
-<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>searchItem</title>
 <link href="./itemStyle.css" rel="stylesheet" type="text/css">
@@ -27,6 +28,17 @@ Connection conn = db.getConnection();
 Statement stt = con.createStatement();
 ResultSet result;
 String sql= "";
+
+Timefunction time=new Timefunction();
+String id = request.getParameter("idItem");
+
+/* check enddate of the auction  */
+sql="select end_date from Item where item_id='"+id+"'";
+ResultSet rs=st.executeQuery(sql);
+	if(rs.next())
+	{   
+		out.println(time.compareTime(rs.getString("end_date"))); 
+	}
 
 String itID = request.getParameter("idItem");
 
@@ -76,5 +88,6 @@ while (result.next())
 
 
 %>
+
 </body>
 </html>

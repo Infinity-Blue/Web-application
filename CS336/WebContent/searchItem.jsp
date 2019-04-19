@@ -26,64 +26,77 @@ String sql="";
 String idsql="";
 %>
 <% 
-String item = request.getParameter("Search");  
+String Category = request.getParameter("Search");  
 String Color=request.getParameter("Color");
 String Name=request.getParameter("Name");
 String Age=request.getParameter("Age");
 String Breed=request.getParameter("Breed"); 
-if (item.equals("dog"))
-{   
-	if(Color.isEmpty() && Name.isEmpty() && Age.isEmpty() && Breed.isEmpty())
-	{
-		sql="select title from Item where item_id in (select itemID from Dog)"; 
-	}
-	else 
-	{ 
-    sql="select title from Item i inner join Characteristics c on i.item_id=c.itemsId inner join Dog d on c.itemsId=d.itemID where c.colors='"+Color+"' or c.names='"+Name+"' or c.ages='"+Age+"' or c.breeds='"+Breed+"'";  
-	}
-	idsql="select * from Item where item_id in (select itemID from Dog)"; 
-}
-else if (item.equals("cat"))
-{
-	if(Color.isEmpty() && Name.isEmpty() && Age.isEmpty() && Breed.isEmpty())
-	{
-		sql="select title from Item where item_id in (select itemID from Cat)";
-	}
-	else
-	{
-	sql="select title from Item i inner join Characteristics c on i.item_id=c.itemsId inner join Cat ct on c.itemsId=ct.itemID where c.colors='"+Color+"' or c.names='"+Name+"' or c.ages='"+Age+"' or c.breeds='"+Breed+"'"; 
-	}
-	idsql="select * from Item where item_id in (select itemID from Cat)"; 
-}
-else if (item.equals("rabbit"))
-{
-	if(Color.isEmpty() && Name.isEmpty() && Age.isEmpty() && Breed.isEmpty())
-	{
-		sql="select title from Item where item_id in (select itemID from Rabbit)"; 
-	}
-	else
-	{
-	sql="select title from Item i inner join Characteristics c on i.item_id=c.itemsId inner join Rabbit r on c.itemsId=r.itemID where c.colors='"+Color+"' or c.names='"+Name+"' or c.ages='"+Age+"' or c.breeds='"+Breed+"'"; 
-	}
-	idsql="select * from Item where item_id in (select itemID from Rabbit)"; 
-}
-else
-{
-	out.println("No item");
-	response.sendRedirect("noMatch.jsp"); 
+
+String empty = "";
+
+sql = "select * from Item natural join ItemProperties where";
+
 	
-} 
-if(sql!="" && idsql!=""){
+if (!(Category.equals(empty))){
+	
+	sql = sql + " category = '"+Category+"'";
+}
+
+if (!(Color.equals(empty))){
+	
+	sql = sql + " and color = '"+Color+"'";
+}
+
+if (!(Name.equals(empty))){
+	
+	sql = sql + " and name = '"+Name+"'";
+}
+
+if (!(Age.equals(empty))){
+	
+	sql = sql + " and age = '"+Age+"'";
+}
+
+if (!(Breed.equals(empty))){
+	
+	sql = sql + " and breed = '"+Breed+"'";
+}
+
+
+
+if(sql!=""){
+	
 result=st.executeQuery(sql);
-resultset=stt.executeQuery(idsql);
-while (result.next() && resultset.next()) 
-{  %> 
-	<div class="item">
-	<a href="itemDetails.jsp?idItem=<%=resultset.getString("item_id")%>"><%=result.getString("title")%></a>
+
+if(result.first()){
+	
+	%> <h1 style="text-align:center"> <%=Category+"s"%> </h1> <%
+
+	%> 
+	<div class="item" style="margin:20px">
+	<a href="itemDetails.jsp?idItem=<%=result.getString("item_id")%>"> Name: <%=result.getString("name")%> Breed: <%=result.getString("breed")%> Age: <%=result.getString("age")%></a>
 	</div>
 	<%
+			
+			
+			while (result.next()) 
+			{  %> 
+				<div class="item" style="margin:20px">
+				<a href="itemDetails.jsp?idItem=<%=result.getString("item_id")%>"> Name: <%=result.getString("name")%> Breed: <%=result.getString("breed")%> Age: <%=result.getString("age")%></a>
+				</div>
+				<%
+			}
 }
+
+
+else{
+	out.println("No items found with the characteristics you selected.");
+	response.sendRedirect("noMatch.jsp"); 
 }
+
+}
+
+
 %>
 
 </body>

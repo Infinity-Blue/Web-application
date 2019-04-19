@@ -29,13 +29,13 @@
 
 /* String sql="";  */
 %>
-<div class="category">
+<div style="text-align:center margin-left: auto margin-right: auto" class="category">
 <form action="searchItem.jsp" method="POST">
-       <input type="text" name="Search" /> <br/>
-       color <input type="text" name="Color" /> <br/>
-       name <input type="text" name="Name" /> <br/>
-       age <input type="text" name="Age"/> <br/>
-       breed <input type="text" name="Breed" /> <br/>
+       Title: <input type="text" name="Search" placeholder="'Cat', 'Dog', or 'Rabbit'" required/> <br/>
+       Color: <input type="text" name="Color" placeholder="ex: red, blue" /> <br/>
+       Name: <input type="text" name="Name" placeholder="ex: Pluto" /> <br/>
+       Age: <input type="text" name="Age" placeholder="ex: 9" /> <br/>
+       Breed: <input type="text" name="Breed" placeholder="ex: Poodle" /> <br/>
        <input type="submit" value="search"/></form>
 </div>
 
