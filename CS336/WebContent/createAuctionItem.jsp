@@ -10,7 +10,7 @@
 
   <form action="storeItem.jsp" method="POST">
        Title <br/><input type="text" name="title"/> <br/>
-       EndDate (MM-DD-YYYY) <br/><input type="text" name="enddate"/> <br/>
+       EndDate (MM-DD-YYYY HH:MM:SS) <br/><input type="text" name="enddate"/> <br/>
        Initial Price <br/> <input type="text" name="initialprice"/> <br/>
        Minimum Price <br/><input type="text" name="minprice"/> <br/>
 

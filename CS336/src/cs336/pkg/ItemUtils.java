@@ -24,7 +24,7 @@ public class ItemUtils {
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
 		
 		java.util.Date date = sdf1.parse(enddate);
 		
