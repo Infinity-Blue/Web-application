@@ -37,7 +37,8 @@
        Age: <input type="text" name="Age" placeholder="ex: 9" /> <br/>
        Breed: <input type="text" name="Breed" placeholder="ex: Poodle" /> <br/>
        <input type="submit" value="search"/></form>
-</div>
+</div><br>
+<a href="buyerSeller.jsp">Search by seller or buyer</a>
 
 </body>
 </html>
